@@ -1,3 +1,6 @@
+#import necesssary libraries
+from pytrie import StringTrie
+
 valid_words = [] #list containing all words greater than 2 letters long
 
 with open("scrabble.txt", 'r') as f: #file name, mode --> names the file 'f'
@@ -37,42 +40,41 @@ with open("scrabble.txt", 'r') as f: #file name, mode --> names the file 'f'
 
 done = False
 
-#while(!done):
-	#user_letter = input("Please enter a letter: ")
+while(!done):
+	user_letter = input("Please enter a letter: ")
 	#print(user_letter)
+
+	#use is valid method (see implemenation below the method)
 
 	#implement check method
 
 
-
+"""
+	Function which returns all strings that contains given prefix
+"""
 def is_valid(valid_list, letters):
-	# Function which returns all strings
-	# that contains given prefix
-	from pytrie import StringTrie
-
 	# create empty trie
-    trie=StringTrie()
-    # traverse through list of strings  
-    # to insert it in trie. Here value of
-    # key is itself key because at last
-    # we need to return
-    for key in arr:
-    	trie[key] = key
+	trie=StringTrie()
 
-    # values(search) method returns list 
-    # of values of keys which contains
-    # search pattern as prefix
-    return trie.values(prefix)
-    
-# Driver program 
 
-  arr = ['geeksforgeeks','forgeeks','geeks','eeksfor'] 
-  prefix = 'geek'
-  output = prefixSearch(arr,prefix) 
-  if len(output) > 0: 
-    print output 
-  else: 
-    print 'Pattern not found' 
+	# traverse through list of string to insert it in trie.
+	# Here value of key is itself key because at last we need to retun
+	for key in arr:
+		trie[key] = key
+
+	# values(search) method returns list of values of keys
+	# which contains search pattern as prefix
+	return trie.values(prefix)
+
+
+# Driver program
+arr = ['geeksforgeeks','forgeeks','geeks','eeksfor']
+prefix = 'geek'
+output = is_valid(arr,prefix)
+if len(output) > 0:
+	print(output)
+else:
+	print('Pattern not found')
 
 
 
